@@ -11,5 +11,7 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         Schedule::factory()->count(10)->create();
+
+        $this->call(ScheduleTableSeeder::class);
     }
 }
