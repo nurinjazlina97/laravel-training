@@ -24,6 +24,8 @@
                                         <td>{{ $schedule->title }}</td>
                                         <td>{{ $schedule->description }}</td>
                                         <td>
+                                            <a href="{{ route('schedules.show', $schedule)}}" class="btn btn-info">Show</a>
+                                            <a href="{{ route('schedules.edit', $schedule)}}" class="btn btn-secondary">Edit</a>
                                             <a href="{{ route('schedules.delete', $schedule)}}" class="btn btn-danger">Delete</a>
                                         </td>
                                     </tr>
