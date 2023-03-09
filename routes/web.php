@@ -26,3 +26,5 @@ Route::get('/schedules', [App\Http\Controllers\ScheduleController::class,'index'
 Route::get('schedules/create', [App\Http\Controllers\ScheduleController::class, 'create'])->name('schedules.create');
 
 Route::post('/schedules/create', [App\Http\Controllers\ScheduleController::class, 'store'])->name('schedules.store');
+
+Route::get('/schedules/{schedule}', [App\Http\Controllers\ScheduleController::class, 'show'])->name('schedules.show');
