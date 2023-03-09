@@ -30,4 +30,16 @@ class ScheduleController extends Controller
     {
         return view('schedules.show', compact('schedule'));
     }
+
+    public function edit(Schedule $schedule)
+    {
+        return view('schedules.edit', compact('schedule'));
+    }
+
+    public function update(Request $request, Schedule $schedule)
+    {
+        $schedule->update($request->all());
+
+        return redirect()->route('schedules.index');
+    }
 }
