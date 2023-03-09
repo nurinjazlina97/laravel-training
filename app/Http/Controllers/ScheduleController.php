@@ -18,4 +18,11 @@ class ScheduleController extends Controller
     {
         return view('schedules.create');
     }
+
+    public function store(Request $request)
+    {
+        $schedule = Schedule::create($request->all());
+
+        return redirect()->route('schedules.index');
+    }
 }

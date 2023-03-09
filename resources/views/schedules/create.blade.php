@@ -8,7 +8,7 @@
                 <div class="card-header">{{ __('Dashboard') }}</div>
 
                 <div class="card-body">
-                    <form method="" action="">
+                    <form method="POST" action="{{ route('schedules.store') }}">
                         @csrf
                         <div class="form-group">
                             <label>Title</label>
