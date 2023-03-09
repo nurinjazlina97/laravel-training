@@ -42,4 +42,11 @@ class ScheduleController extends Controller
 
         return redirect()->route('schedules.index');
     }
+
+    public function destroy(Schedule $schedule)
+    {
+        $schedule->delete();
+
+        return redirect()->route('schedules.index');
+    }
 }

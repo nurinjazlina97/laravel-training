@@ -14,6 +14,7 @@
                                     <th>ID</th>
                                     <th>Title</th>
                                     <th>Description</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -22,6 +23,9 @@
                                         <td>{{ $schedule->id }}</td>
                                         <td>{{ $schedule->title }}</td>
                                         <td>{{ $schedule->description }}</td>
+                                        <td>
+                                            <a href="{{ route('schedules.delete', $schedule)}}" class="btn btn-danger">Delete</a>
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>

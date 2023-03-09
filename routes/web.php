@@ -32,3 +32,5 @@ Route::get('/schedules/{schedule}', [App\Http\Controllers\ScheduleController::cl
 Route::get('/schedules/{schedule}/edit', [App\Http\Controllers\ScheduleController::class, 'edit'])->name('schedules.edit');
 
 Route::post('/schedules/{schedule}/edit', [App\Http\Controllers\ScheduleController::class, 'update'])->name('schedules.update');
+
+Route::get('/schedules/{schedule}/delete', [App\Http\Controllers\ScheduleController::class, 'destroy'])->name('schedules.delete');
