@@ -13,4 +13,9 @@ class ScheduleController extends Controller
 
         return view('schedules.index', compact('schedules'));
     }
+
+    public function create()
+    {
+        return view('schedules.create');
+    }
 }
