@@ -12,5 +12,11 @@ class Schedule extends Model
     protected $fillable = [
         'title',
         'description',
+        'attachment',
     ];
+
+    public function getAttachmentUrlAttribute()
+    {
+        return asset('storage/'.$this->attachment);
+    }
 }

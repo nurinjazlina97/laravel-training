@@ -21,6 +21,14 @@ class ScheduleController extends Controller
 
     public function store(Request $request)
     {
+
+        if($request->hasFile('attachment')){
+            $filename = $schedule->id.'-'.date('Y-m-d').'-'.$request->attachment->getClientOriginalExtension();
+            Storage::disk(config('filesystems.default'))->put('attachments/'.$filename. File::get($request->attachment));
+
+            $schedule->attachment = $filename;
+            $schedule->save();
+        }
         $schedule = Schedule::create($request->all());
 
         return redirect()->route('schedules.index');
@@ -45,6 +53,10 @@ class ScheduleController extends Controller
 
     public function destroy(Schedule $schedule)
     {
+        if($request->attachment)
+        {
+            Storage::disk(config('filesystems.default'))->delete($schedule->attachment);
+        }
         $schedule->delete();
 
         return redirect()->route('schedules.index');

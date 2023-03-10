@@ -19,6 +19,10 @@
                             <textarea class="form-control" name="description" placeholder="Enter your description here"></textarea>
                         </div>
                         <div class="form-group">
+                            <label>Attachment</label>
+                            <input type="file" class="form-control" name="attachment">
+                        </div>
+                        <div class="form-group">
                             <button type="submit" class="btn btn-primary">Save My Schedule</button>
                         </div>
                     </form>
