@@ -7,9 +7,14 @@ use App\Models\Schedule;
 
 class ScheduleController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $schedules = Schedule::paginate(3);
+        if ($request->keyword) {
+            $schedules = Schedule::where('title', 'LIKE', '%'.$request->keyword.'%')
+                         ->paginate(3);
+        } else {
+            $schedules = Schedule::paginate(3);
+        }
 
         return view('schedules.index', compact('schedules'));
     }
@@ -21,15 +26,15 @@ class ScheduleController extends Controller
 
     public function store(Request $request)
     {
+        $schedule = Schedule::create($request->all());
 
-        if($request->hasFile('attachment')){
+        if ($request->hasFile('attachment')) {
             $filename = $schedule->id.'-'.date('Y-m-d').'-'.$request->attachment->getClientOriginalExtension();
             Storage::disk(config('filesystems.default'))->put('attachments/'.$filename. File::get($request->attachment));
 
             $schedule->attachment = $filename;
             $schedule->save();
         }
-        $schedule = Schedule::create($request->all());
 
         return redirect()->route('schedules.index');
     }
@@ -53,8 +58,7 @@ class ScheduleController extends Controller
 
     public function destroy(Schedule $schedule)
     {
-        if($request->attachment)
-        {
+        if ($request->attachment) {
             Storage::disk(config('filesystems.default'))->delete($schedule->attachment);
         }
         $schedule->delete();
