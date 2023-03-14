@@ -17,6 +17,6 @@ class Schedule extends Model
 
     public function getAttachmentUrlAttribute()
     {
-        return asset('storage/'.$this->attachment);
+        return asset('storage/attachments/'.$this->attachment);
     }
 }

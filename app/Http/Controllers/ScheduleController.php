@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Schedule;
+use Storage;
+use File;
 
 class ScheduleController extends Controller
 {
@@ -30,7 +32,7 @@ class ScheduleController extends Controller
 
         if ($request->hasFile('attachment')) {
             $filename = $schedule->id.'-'.date('Y-m-d').'-'.$request->attachment->getClientOriginalExtension();
-            Storage::disk(config('filesystems.default'))->put('attachments/'.$filename. File::get($request->attachment));
+            Storage::disk('public')->put('attachments/'.$filename, File::get($request->attachment));
 
             $schedule->attachment = $filename;
             $schedule->save();
@@ -59,7 +61,7 @@ class ScheduleController extends Controller
     public function destroy(Schedule $schedule)
     {
         if ($request->attachment) {
-            Storage::disk(config('filesystems.default'))->delete($schedule->attachment);
+            Storage::disk('public')->delete($schedule->attachment);
         }
         $schedule->delete();
 
