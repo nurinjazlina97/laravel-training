@@ -4,14 +4,20 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
+                @if (session()->has('alert'))
+                    <div class="alert {{ session()->get('alert-type') }}" role="alert">
+                        {{ session()->get('alert') }}
+                    </div>
+                @endif
                 <div class="card">
                     <div class="card-header">
                         {{ __('Schedule Index') }}
-                        
+
                         <div class="float-right">
                             <form action="" method="">
                                 <div class="input-group">
-                                    <input type="text" class="form-control" name="keyword" value="{{ request()->get('keyword') }}">
+                                    <input type="text" class="form-control" name="keyword"
+                                        value="{{ request()->get('keyword') }}">
                                     <div class="input-group-append">
                                         <button class="btn btn-primary" type="submit">Search</button>
                                     </div>
@@ -37,9 +43,11 @@
                                         <td>{{ $schedule->title }}</td>
                                         <td>{{ $schedule->description }}</td>
                                         <td>
-                                            <a href="{{ route('schedules.show', $schedule)}}" class="btn btn-info">Show</a>
-                                            <a href="{{ route('schedules.edit', $schedule)}}" class="btn btn-secondary">Edit</a>
-                                            <a href="{{ route('schedules.delete', $schedule)}}" class="btn btn-danger">Delete</a>
+                                            <a href="{{ route('schedules.show', $schedule) }}" class="btn btn-info">Show</a>
+                                            <a href="{{ route('schedules.edit', $schedule) }}"
+                                                class="btn btn-secondary">Edit</a>
+                                            <a href="{{ route('schedules.delete', $schedule) }}"
+                                                class="btn btn-danger">Delete</a>
                                         </td>
                                     </tr>
                                 @endforeach
