@@ -61,7 +61,7 @@ class ScheduleController extends Controller
         return redirect()->route('schedules.index');
     }
 
-    public function destroy(Schedule $schedule)
+    public function destroy(Request $request, Schedule $schedule)
     {
         if ($request->attachment) {
             Storage::disk('public')->delete($schedule->attachment);
